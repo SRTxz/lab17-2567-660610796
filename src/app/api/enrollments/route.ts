@@ -62,8 +62,8 @@ if((studentId && courseNo || !studentId && !courseNo)){
       //your code here
       if(enroll.courseNo === courseNo) {
         studentIdList.push(enroll.studentId);
+      }
     }
-
     const students = [];
     //your code here
     for (const studentId of studentIdList) {
@@ -160,11 +160,11 @@ export const DELETE = async (request:NextRequest) => {
   );
 
   //perform deletion by using splice or array filter
-
+  DB.enrollments=DB.enrollments.filter((x)=> x.studentId !== studentId || x.courseNo !== courseNo);
   //if code reach here it means deletion is complete
   return NextResponse.json({
     ok: true,
     message: "Enrollment has been deleted",
   });
 };
-}
+
