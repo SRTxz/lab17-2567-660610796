@@ -147,10 +147,10 @@ export const DELETE = async (request:NextRequest) => {
   const { studentId, courseNo } = body;
 
   //check if studentId and courseNo exist on enrollment
-  const foundStudent = DB.enrollments.find((x)=> x.studentId === studentId);
-  const foundCourse = DB.enrollments.find((x)=> x.courseNo === courseNo);
+  const found = DB.enrollments.find((x)=> x.studentId === studentId && x.courseNo === courseNo);
+  
 
-  if(!foundStudent || !foundCourse)
+  if(!found)
   return NextResponse.json(
     {
       ok: false,
